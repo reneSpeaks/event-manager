@@ -2,7 +2,7 @@ const Hero = () => {
     return (
         <section
             id="hero"
-            className="hero min-h-screen max-w-screen border-b-4 border-accent mb-4"
+            className="hero min-h-screen max-w-screen border-b-4 border-accent"
             style={{
                 backgroundImage: "url(/pexels-teddy-2263436.jpg)",
             }}>
