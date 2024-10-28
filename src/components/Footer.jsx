@@ -44,7 +44,7 @@ const Footer = () => {
     </div>
   </nav>
   <aside>
-    <p>Copyright © {new Date().getFullYear()} - All right reserved by Eventify Ltd</p>
+    <p>Copyright © {new Date().getFullYear()} - All right reserved by Events Manager Ltd</p>
   </aside>
 </footer>
     );
