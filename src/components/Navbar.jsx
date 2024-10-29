@@ -1,4 +1,5 @@
 import {FaBars} from "react-icons/fa6";
+import {Link} from "react-router-dom";  
 
 const Navbar = () => {
     return (
@@ -10,7 +11,7 @@ const Navbar = () => {
                         <a className="text-3xl sm:text-2xl font-bold cursor-pointer hover:text-accent">Eventify<span className="text-accent">.</span></a>
                     </div>
                     <ul className="hidden sm:flex flex-row gap-20 font-bold">
-                        <li><a className="menu-item cursor-pointer">Home</a></li>
+                        <li><Link to="/" className="menu-item cursor-pointer">Home</Link></li>
                         <li><a className="menu-item cursor-pointer">Events</a></li>
                     </ul>
                     <button className="text-xl cursor-pointer font-bold hover:text-accent active:text-primary" onClick={() => document.getElementById('sign-form').showModal()}>Log

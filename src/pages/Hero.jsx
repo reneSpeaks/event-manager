@@ -1,6 +1,7 @@
 import {useEffect} from 'react';
 import UpcomingEventCard from "../components/UpcomingEventCard";
 import {typeWriter} from '../utils/typewriter.js';
+import EventCardContainer from "../components/EventCardContainer";
 
 const Hero = () => {
 
@@ -31,6 +32,7 @@ const Hero = () => {
     }, []);
 
     return (
+        <>
         <section
             id="hero"
             className="hero min-h-screen max-w-screen border-b-4 border-accent relative"
@@ -48,7 +50,11 @@ const Hero = () => {
                 <UpcomingEventCard />
             </div>
         </section>
+          <section id="event-card-container">
+          <EventCardContainer />
+          </section>
+          </>
     );
-};
-
+}
+  
 export default Hero;
