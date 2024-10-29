@@ -4,7 +4,7 @@ const SignForm = () => {
     const [signMode, setSignMode] = useState('sign-in');
 
     return (
-        <dialog id="sign-form" className="modal modal-middle">
+        <dialog id="sign-form" className="modal">
             <div className="modal-box p-8">
                 <form method="dialog">
                     <button className="absolute right-3 top-2" onClick={() => setSignMode('sign-in')}>✕</button>
