@@ -1,6 +1,6 @@
-import EventSection from "./EventSection";
 import {useEffect, useState} from 'react';
 import axios from 'axios';
+import EventCard from './EventCard.jsx';
 
 const EventCardContainer = () => {
     const [upcomingEvents, setUpcomingEvents] = useState([]);
@@ -17,15 +17,14 @@ const EventCardContainer = () => {
     }, []);
 
     return (
-        <div className="bg-gray-900 text-white py-10">
-            <h2 className="text-3xl font-semibold text-center mb-10 text-gray-300">Upcoming Events</h2>
-
-            {upcomingEvents && upcomingEvents.map((upcomingEvent, index) => {
-                return (
-                    <EventSection event={upcomingEvent} isReversed={(index % 2 === 0)} />
-                );
-            })}
-        </div>
+        <section className="p-4 flex flex-col max-w-[1280px] w-full bg-base-100">
+            <h2 className="text-3xl font-bold text-accent text-center mb-10">Moments to consider</h2>
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 w-full place-items-center">
+                {upcomingEvents && upcomingEvents.map((upcomingEvent, index) => {
+                    return (<EventCard key={index} event={upcomingEvent} />);
+                })}
+            </div>
+        </section>
     );
 };
 

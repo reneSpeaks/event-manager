@@ -1,57 +1,63 @@
-import events from "../data/events";
-import { useParams, useNavigate } from "react-router-dom";
+import {useParams, useNavigate} from "react-router-dom";
+import {useEffect, useState} from 'react';
+import axios from 'axios';
 
 const EventDetails = () => {
-    const { id } = useParams();
+    const {id} = useParams();
     const navigate = useNavigate();
-    const event = events.find((event) => event.id === parseInt(id));
+    const [event, setEvent] = useState([]);
 
-    if (!event) {
-        return <div>Event not found</div>;
-    }
+    useEffect(() => {
+        axios('http://localhost:3001/api/events/' + id)
+            .then((response) => {
+                setEvent(response.data);
+            })
+            .catch((error) => {
+                console.error(error);
+            });
+    }, []);
 
     return (
-        <div>
-            <section
-                id="eventDetails"
-                className="hero min-h-screen max-w-screen border-b-4 border-accent relative"
-                style={{
-                    backgroundImage: `url(${event.imageUrl})`,
-                    backgroundSize: 'cover',
-                    backgroundPosition: 'center',
-                    backgroundRepeat: 'no-repeat',
-                }}
-            >
-                <div className="hero-overlay bg-opacity-60"></div>
-                <div className="hero-content text-neutral-content text-center flex-col md:flex-row gap-10 md:gap-28">
-                    <div className="max-w-md p-6 bg-white bg-opacity-80 rounded-lg shadow-lg">
-                        <h1 className="text-6xl font-extrabold mb-4 text-accent hover:underline transition-all duration-300">
-                            {event.title}
-                        </h1>
-                        <p className="text-2xl mb-2 font-semibold text-gray-800">
-                            {event.date}
-                        </p>
-                        <p className="text-xl mb-4 font-semibold text-gray-700">
-                            {event.location}
-                        </p>
-                        <p className="text-lg text-gray-600 mb-6">
-                            {event.description}
-                        </p>
-                        <div className="flex justify-between gap-4">
-                            <button className="btn bg-accent text-black hover:bg-accent-dark transition-all duration-300">
-                                Show me a map!
-                            </button>
-                            <button 
-                                className="btn bg-accent text-black hover:bg-accent-dark transition-all duration-300"
-                                onClick={() => navigate(`/#${event.id}`)} 
-                            >
-                                Back to Events
-                            </button>
+        <>
+            {event && (
+                <section
+                    id="eventDetails"
+                    className="hero min-h-screen max-w-screen border-b-4 border-accent relative"
+                    style={{
+                        backgroundImage: `url(${event.imgurl ? event.imgurl : "https://via.assets.so/img.jpg?w=1280&h=900"})`,
+                        backgroundSize: 'cover',
+                        backgroundPosition: 'center',
+                        backgroundRepeat: 'no-repeat',
+                    }}
+                >
+                    <div className="hero-overlay bg-opacity-60"></div>
+                    <div className="hero-content text-neutral-content text-center flex-col md:flex-row gap-10 md:gap-28">
+                        <div className="max-w-md p-6 bg-white bg-opacity-80 rounded-lg shadow-lg">
+                            <h1 className="text-6xl font-extrabold mb-4 text-accent">
+                                {event.title}
+                            </h1>
+                            <p className="text-2xl mb-2 font-semibold text-gray-800">
+                                {event.date}
+                            </p>
+                            <p className="text-xl mb-4 font-semibold text-gray-700">
+                                {event.location}
+                            </p>
+                            <p className="text-lg text-gray-600 mb-6">
+                                {event.description}
+                            </p>
+                            <div className="flex justify-between gap-4">
+                                <button className="btn btn-accent hover:btn-primary">
+                                    Show me a map!
+                                </button>
+                                <button className="btn btn-accent hover:btn-primary" onClick={() => navigate("/")}>
+                                    Back to Events
+                                </button>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </section>
-        </div>
+                </section>
+            )}
+        </>
     );
 };
 

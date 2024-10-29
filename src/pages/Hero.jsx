@@ -6,7 +6,7 @@ import EventCardContainer from "../components/EventCardContainer";
 const Hero = () => {
 
     useEffect(() => {
-        const heroText = ["All Your Events.", "One Place.", "Live and Loud"];
+        const heroText = ["All Your Events.", "One Place.", "Live and Loud."];
 
         function StartTextAnimation(i) {
             if (typeof heroText[i] == 'undefined') {
@@ -33,28 +33,27 @@ const Hero = () => {
 
     return (
         <>
-        <section
-            id="hero"
-            className="hero min-h-screen max-w-screen border-b-4 border-accent relative"
-            style={{
-                backgroundImage: "url(/pexels-teddy-2263436.jpg)",
-            }}>
-            <div className="hero-overlay bg-opacity-60"></div>
-            <div className="hero-content relative text-neutral-content text-center flex-col md:flex-row gap-28">
-                <div className="w-32 h-32 text-center text-wrap">
-                    <h1 className="">
-                        <a className="typewrite text-5xl font-bold mb-4 text-center"> </a>
-                        <span className="text-5xl font-bold border-r-2 border-solid border-accent"></span>
-                    </h1>
+            <section
+                id="hero"
+                className="hero min-h-screen max-w-screen border-b-4 border-accent relative"
+                style={{
+                    backgroundImage: "url(/pexels-teddy-2263436.jpg)",
+                }}>
+
+                <div className="hero-overlay bg-opacity-60"></div>
+                <div className="max-w-[1280px] w-full relative h-full flex items-center justify-center">
+                    <div className="hero-content w-full text-neutral-content text-center flex-col md:flex-row gap-28">
+                        <h1>
+                            <span className="typewrite text-5xl font-bold mb-4"></span>
+                            <span className="text-5xl font-bold border-r-2 border-solid border-accent"></span>
+                        </h1>
+                        <UpcomingEventCard />
+                    </div>
                 </div>
-                <UpcomingEventCard />
-            </div>
-        </section>
-          <section id="event-card-container">
-          <EventCardContainer />
-          </section>
-          </>
+            </section>
+            <EventCardContainer />
+        </>
     );
-}
-  
+};
+
 export default Hero;
