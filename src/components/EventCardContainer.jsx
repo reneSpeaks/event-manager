@@ -1,4 +1,4 @@
-s
+
 import EventCard from "./EventCard";
 import events from "../data/events";
 
