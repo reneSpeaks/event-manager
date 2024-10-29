@@ -12,7 +12,7 @@ const EventCard = ({ event }) => {
   return (
     <div className="event-card bg-base-100 shadow-sm shadow-accent rounded-lg p-5 max-w-sm transform transition duration-300 ease-in-out hover:scale-105 hover:shadow-2xl hover:shadow-primary">
       <img
-        src={event.imageUrl}
+        src="https://via.assets.so/img.jpg?w=500&h=300"
         alt={event.title}
         className="w-full h-40 rounded-lg object-cover mb-4"
       />

@@ -38,11 +38,11 @@ const EventDetails = () => {
                             {event.description}
                         </p>
                         <div className="flex justify-between gap-4">
-                            <button className="btn bg-accent text-white hover:bg-accent-dark transition-all duration-300">
+                            <button className="btn bg-accent text-black hover:bg-accent-dark transition-all duration-300">
                                 Show me a map!
                             </button>
                             <button 
-                                className="btn bg-accent text-white hover:bg-accent-dark transition-all duration-300"
+                                className="btn bg-accent text-black hover:bg-accent-dark transition-all duration-300"
                                 onClick={() => navigate(`/#${event.id}`)} 
                             >
                                 Back to Events
