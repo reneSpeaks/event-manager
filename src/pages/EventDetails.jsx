@@ -43,7 +43,7 @@ const EventDetails = () => {
                             </button>
                             <button 
                                 className="btn bg-accent text-white hover:bg-accent-dark transition-all duration-300"
-                                onClick={() => navigate(`/#${event.id}`)} // Navigate with hash for scrolling
+                                onClick={() => navigate(`/#${event.id}`)} 
                             >
                                 Back to Events
                             </button>
