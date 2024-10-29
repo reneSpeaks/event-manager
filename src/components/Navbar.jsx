@@ -8,7 +8,7 @@ const Navbar = () => {
                 <li><a className="menu-item cursor-pointer">Home</a></li>
                 <li><a className="menu-item cursor-pointer">Events</a></li>
             </ul>
-            <button className="text-xl cursor-pointer font-bold hover:text-accent active:text-primary" onClick={() => document.getElementById('sign-in').showModal()}>Log In</button>
+            <button className="text-xl cursor-pointer font-bold hover:text-accent active:text-primary" onClick={() => document.getElementById('sign-form').showModal()}>Log In</button>
         </nav>
     );
 };
