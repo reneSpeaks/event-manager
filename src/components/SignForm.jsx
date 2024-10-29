@@ -13,11 +13,11 @@ const SignForm = () => {
                 <form>
                     <div className="input-field">
                         <input id="form-email" type="text" autoComplete="email" required />
-                        <label htmlFor="form-email">Email</label>
+                        <label htmlFor="form-email">{signMode === 'sign-in' ? "Email" : "Enter your email"}</label>
                     </div>
                     <div className="input-field">
                         <input id="form-password" type="password" autoComplete="off" required />
-                        <label htmlFor="form-password">Password</label>
+                        <label htmlFor="form-password">{signMode === 'sign-in' ? "Password" : "Create password"}</label>
                     </div>
                 </form>
 
@@ -33,15 +33,11 @@ const SignForm = () => {
 
                 {signMode === 'sign-in' ? (
                     <div className="flex justify-center mt-4">
-                        <p>Don't have an
-                            account? <a className="text-accent hover:underline cursor-pointer" onClick={() => setSignMode('sign-up')}>Sign
-                                up</a></p>
+                        <p>Don't have an account? <a className="text-accent hover:underline cursor-pointer" onClick={() => setSignMode('sign-up')}>Sign up</a></p>
                     </div>
                 ) : (
                     <div className="flex justify-center mt-4">
-                        <p>Already have an
-                            account? <a className="text-accent hover:underline cursor-pointer" onClick={() => setSignMode('sign-in')}>Sign
-                                in</a></p>
+                        <p>Already have an account? <a className="text-accent hover:underline cursor-pointer" onClick={() => setSignMode('sign-in')}>Sign in</a></p>
                     </div>
                 )}
             </div>
