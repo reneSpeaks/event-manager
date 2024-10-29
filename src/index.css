@@ -1,3 +1,40 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.menu-item {
+    @apply inline-block relative;
+}
+
+.menu-item::after {
+    content: '';
+    @apply w-full absolute left-0 bottom-0 bg-accent origin-bottom-left h-[2px] ease-in-out;
+    transform: scaleX(0);
+    transition: transform 0.25s;
+}
+
+.menu-item:hover::after {
+    transform: scaleX(1);
+}
+
+.input-field {
+    @apply relative h-12 w-full mt-5 mb-2;
+
+    input {
+        @apply w-full h-full outline-none px-4 text-[0.95rem] rounded-lg border-2 border-solid border-neutral focus:border-accent;
+
+        &:is(:focus, :valid) {
+            @apply px-4 pt-[16px] pb-0;
+        }
+
+        &:is(:focus, :valid) ~ label {
+            @apply text-accent text-xs;
+            transform: translateY(-120%);
+        }
+    }
+
+    label {
+        @apply absolute top-1/2 duration-200 ease-in-out pointer-events-none left-4;
+        transform: translateY(-50%);
+    }
+}

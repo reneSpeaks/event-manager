@@ -1,12 +1,12 @@
 import Hero from './pages/Hero.jsx';
 import Footer from './components/Footer.jsx';
-import Navbar from "./components/Navbar";
 import EventCardContainer from './components/EventCardContainer.jsx';
+import Header from './components/Header';
 
 const App = () => {
     return (
         <>
-            <Navbar />
+            <Header />
             <main>
                 <Hero />
                 <EventCardContainer />
