@@ -21,7 +21,7 @@ const Hero = () => {
           <UpcomingEventCard />
         </div>
       </section>
-      <section id="eventCardContainer">
+      <section id="event-card-container">
       <EventCardContainer />
       </section>
     </>
