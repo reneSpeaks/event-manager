@@ -1,11 +1,11 @@
 import Hero from './pages/Hero.jsx';
 import Footer from './components/Footer.jsx';
-import Navbar from "./components/Navbar";
+import Header from './components/Header.jsx';
 
 const App = () => {
     return (
         <>
-            <Navbar />
+            <Header />
             <main>
                 <Hero />
             </main>

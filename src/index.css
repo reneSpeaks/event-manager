@@ -1,3 +1,18 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.menu-item {
+    @apply inline-block relative;
+}
+
+.menu-item::after {
+    content: '';
+    @apply w-full absolute left-0 bottom-0 bg-accent origin-bottom-left h-[2px] ease-in-out;
+    transform: scaleX(0);
+    transition: transform 0.25s;
+}
+
+.menu-item:hover::after {
+    transform: scaleX(1);
+}
