@@ -8,24 +8,26 @@ const Hero = () => {
         const heroText = ["All Your Events.", "One Place.", "Live and Loud"];
 
         function StartTextAnimation(i) {
-            if (typeof heroText[i] == 'undefined'){
-                setTimeout(function() {
+            if (typeof heroText[i] == 'undefined') {
+                setTimeout(function () {
                     StartTextAnimation(0);
                 }, 20000);
             }
             // check if dataText[i] exists
             else if (i < heroText[i].length) {
                 // text exists! start typewriter animation
-                typeWriter(heroText[i], 0, function(){
+                typeWriter(heroText[i], 0, function () {
                     // after callback (and whole text has been animated), start next text
                     StartTextAnimation(i + 1);
                 });
             }
         }
+
         // start the text animation
         StartTextAnimation(0);
 
-        return () => {};
+        return () => {
+        };
     }, []);
 
     return (
@@ -50,4 +52,3 @@ const Hero = () => {
 };
 
 export default Hero;
-
