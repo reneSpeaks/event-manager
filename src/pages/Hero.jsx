@@ -1,8 +1,10 @@
+import UpcomingEventCard from "../components/UpcomingEventCard";
+
 const Hero = () => {
     return (
         <section
             id="hero"
-            className="hero min-h-screen max-w-screen border-b-4 border-accent"
+            className="hero min-h-screen max-w-screen border-b-4 border-accent relative"
             style={{
                 backgroundImage: "url(/pexels-teddy-2263436.jpg)",
             }}>
@@ -12,8 +14,12 @@ const Hero = () => {
                     <h1 className="text-5xl font-bold mb-4">Where every moment matters.</h1>
                 </div>
             </div>
+            <div className="absolute top-1/2 right-20 transform -translate-y-1/2 pr-10">
+                <UpcomingEventCard />
+            </div>
         </section>
     );
 };
 
 export default Hero;
+
