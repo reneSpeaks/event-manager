@@ -1,8 +1,9 @@
 import {useState} from 'react';
 import {FaXmark} from "react-icons/fa6";
 import {toast} from 'react-toastify';
+import {saveLocalStorage} from '../utils/storage.js';
 
-const SignForm = () => {
+const SignForm = (setSignedIn) => {
     const [signMode, setSignMode] = useState('sign-in');
     const [{email, password, policy}, setFormState] = useState({
         email: '',
@@ -22,7 +23,7 @@ const SignForm = () => {
     const handleSubmit = async e => {
         try {
             e.preventDefault();
-            if (!email || !password) return alert('Please fill out all the fields!');
+            if (!email || !password) throw new Error('Please fill out all the fields!');
 
             const user = {
                 email: email,
@@ -39,19 +40,24 @@ const SignForm = () => {
             if (signMode === 'sign-up') {
                 const result = await fetch('http://localhost:3001/api/users', options)
                 const data = await result.json();
-                console.log(data);
+                if (data.error) throw new Error(data.error);
+
+                document.getElementById('sign-form').close();
+                toast.success('Successfully signed up!');
             } else if (signMode === 'sign-in') {
                 const result = await fetch('http://localhost:3001/api/auth/login', options)
                 const data = await result.json();
-                console.log(data);
-            }
+                if (data.error) throw new Error(data.error);
 
+                console.log(data)
+                saveLocalStorage('SignedIn', data.token)
+                setSignedIn((prev) => !prev);
+                document.getElementById('sign-form').close();
+                toast.success('Successfully signed in!');
+            }
         } catch (error) {
             toast.error(error.message)
-        } finally {
-
         }
-
     }
 
     return (
