@@ -12,7 +12,7 @@ const Navbar = () => {
                     </div>
                     <ul className="hidden sm:flex flex-row gap-20 font-bold">
                         <li><NavLink to="/" className={({isActive}) => isActive ? "menu-item cursor-pointer text-accent" : "menu-item cursor-pointer"}>Home</NavLink></li>
-                        <li><a className="menu-item cursor-pointer">Events</a></li>
+                        <li><NavLink to="/events" className={({isActive}) => isActive ? "menu-item cursor-pointer text-accent" : "menu-item cursor-pointer"}>Events</NavLink></li>
                         <li><a className="menu-item cursor-pointer" onClick={() => document.getElementById('event-form').showModal()}>Add Event</a></li>
                     </ul>
                     <button className="text-xl cursor-pointer font-bold hover:text-accent active:text-primary" onClick={() => document.getElementById('sign-form').showModal()}>
