@@ -49,7 +49,7 @@ const EventDetails = () => {
                                 <button className="btn btn-accent hover:btn-primary">
                                     Show me a map!
                                 </button>
-                                <button className="btn btn-accent hover:btn-primary" onClick={() => navigate("/")}>
+                                <button className="btn btn-accent hover:btn-primary" onClick={() => navigate("/events")}>
                                     Back to Events
                                 </button>
                             </div>
