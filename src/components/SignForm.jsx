@@ -1,35 +1,103 @@
 import {useState} from 'react';
+import {FaXmark} from "react-icons/fa6";
+import {toast} from 'react-toastify';
+import {saveLocalStorage} from '../utils/storage.js';
 
-const SignForm = () => {
+const SignForm = ({setSignedIn}) => {
     const [signMode, setSignMode] = useState('sign-in');
+    const [{email, password, policy}, setFormState] = useState({
+        email: '',
+        password: '',
+        policy: false,
+    });
+
+    const handleChange = e => {
+        const { name, value, type, checked } = e.target;
+        const newValue = type === 'checkbox' ? checked : value;
+        setFormState(previousState => ({
+            ...previousState,
+            [name]: newValue
+        }));
+    }
+
+    const handleSubmit = async e => {
+        try {
+            e.preventDefault();
+            if (!email || !password) throw new Error('Please fill out all the fields!');
+
+            const user = {
+                email: email,
+                password: password
+            }
+            const options = {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(user)
+            }
+
+            if (signMode === 'sign-up') {
+                const result = await fetch('http://localhost:3001/api/users', options)
+                const data = await result.json();
+                if (data.error) throw new Error(data.error);
+                document.getElementById('sign-form').close();
+                setFormState(prev => ({
+                    ...prev,
+                    email: '',
+                    password: '',
+                    policy: false,
+                }));
+                toast.success('Successfully signed up!');
+            } else if (signMode === 'sign-in') {
+                const result = await fetch('http://localhost:3001/api/auth/login', options)
+                const data = await result.json();
+                if (data.error) throw new Error(data.error);
+                saveLocalStorage('SignedIn', data.token)
+                setSignedIn(() => true);
+                document.getElementById('sign-form').close();
+                setFormState(prev => ({
+                    ...prev,
+                    email: '',
+                    password: '',
+                    policy: false,
+                }));
+                toast.success('Successfully signed in!');
+            }
+        } catch (error) {
+            toast.error(error.message)
+        }
+    }
 
     return (
         <dialog id="sign-form" className="modal">
             <div className="modal-box p-8">
                 <form method="dialog">
-                    <button className="absolute right-3 top-2" onClick={() => setSignMode('sign-in')}>✕</button>
+                    <button className="absolute text-2xl right-2 top-2" onClick={() => setSignMode('sign-in')}>
+                        <FaXmark />
+                    </button>
                 </form>
                 <h3 className="font-bold text-2xl text-center mb-8">{signMode === 'sign-in' ? "SIGN IN" : "SIGN UP"}</h3>
-                <form>
+                <form onSubmit={handleSubmit}>
                     <div className="input-field">
-                        <input id="form-email" type="text" autoComplete="email" required />
-                        <label htmlFor="form-email">{signMode === 'sign-in' ? "Email" : "Enter your email"}</label>
+                        <input name="email" type="email" autoComplete="email" value={email} onChange={handleChange} required />
+                        <label htmlFor="email">{signMode === 'sign-in' ? "Email" : "Enter your email"}</label>
                     </div>
                     <div className="input-field">
-                        <input id="form-password" type="password" autoComplete="off" required />
-                        <label htmlFor="form-password">{signMode === 'sign-in' ? "Password" : "Create password"}</label>
+                        <input name="password" type="password" autoComplete="off" value={password} onChange={handleChange} required />
+                        <label htmlFor="password">{signMode === 'sign-in' ? "Password" : "Create password"}</label>
+                    </div>
+
+                    {signMode === 'sign-in' ? (
+                        <a href="#" className="text-accent hover:underline pl-4">Forgot password?</a>
+                    ) : (
+                        <label htmlFor="policy" className="pl-4"><input type="checkbox" name="policy" checked={policy} onChange={handleChange} required /> I agree to the<a href="#" className="text-accent hover:underline pl-4">Terms & Conditions</a></label>
+                    )}
+
+                    <div className="modal-action">
+                        <button className="btn btn-primary w-full rounded-lg">{signMode === 'sign-in' ? "Log In" : "Sign Up"}</button>
                     </div>
                 </form>
-
-                {signMode === 'sign-in' ? (
-                    <a href="#" className="text-accent hover:underline pl-4">Forgot password?</a>
-                ) : (
-                    <label htmlFor="policy" className="pl-4"><input type="checkbox" id="policy" required /> I agree to the<a href="#" className="text-accent hover:underline pl-4">Terms & Conditions</a></label>
-                )}
-
-                <div className="modal-action">
-                    <button className="btn btn-primary w-full rounded-lg">{signMode === 'sign-in' ? "Log In" : "Sign Up"}</button>
-                </div>
 
                 {signMode === 'sign-in' ? (
                     <div className="flex justify-center mt-4">

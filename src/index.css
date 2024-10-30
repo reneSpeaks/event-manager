@@ -20,7 +20,47 @@
 .input-field {
     @apply relative h-12 w-full mt-5 mb-2;
 
-    input {
+    input[type="text"] {
+        @apply w-full h-full outline-none px-4 text-[0.95rem] rounded-lg border-2 border-solid border-neutral focus:border-accent;
+
+        &:is(:focus, :valid) {
+            @apply px-4 pt-[16px] pb-0;
+        }
+        &:is(:focus, :invalid) {
+            @apply px-4 pt-[16px] pb-0;
+        }
+
+        &:is(:focus, :valid) ~ label {
+            @apply text-accent text-xs;
+            transform: translateY(-120%);
+        }
+        &:is(:focus, :invalid) ~ label {
+            @apply text-error text-xs;
+            transform: translateY(-120%);
+        }
+    }
+
+    input[type="email"] {
+        @apply w-full h-full outline-none px-4 text-[0.95rem] rounded-lg border-2 border-solid border-neutral focus:border-accent;
+
+        &:is(:focus, :valid) {
+            @apply px-4 pt-[16px] pb-0;
+        }
+        &:is(:focus, :invalid) {
+            @apply px-4 pt-[16px] pb-0;
+        }
+
+        &:is(:focus, :valid) ~ label {
+            @apply text-accent text-xs;
+            transform: translateY(-120%);
+        }
+        &:is(:focus, :invalid) ~ label {
+            @apply text-error text-xs;
+            transform: translateY(-120%);
+        }
+    }
+
+    input[type="password"] {
         @apply w-full h-full outline-none px-4 text-[0.95rem] rounded-lg border-2 border-solid border-neutral focus:border-accent;
 
         &:is(:focus, :valid) {
@@ -29,6 +69,34 @@
 
         &:is(:focus, :valid) ~ label {
             @apply text-accent text-xs;
+            transform: translateY(-120%);
+        }
+        &:is(:focus, :invalid) ~ label {
+            @apply text-error text-xs;
+            transform: translateY(-120%);
+        }
+    }
+
+    input[type="date"] {
+        @apply w-full h-full outline-none px-4 text-[0.95rem] rounded-lg border-2 border-solid border-neutral focus:border-accent;
+    }
+
+    textarea {
+        @apply w-full outline-none px-4 text-[0.95rem] rounded-lg border-2 border-solid border-neutral focus:border-accent;
+
+        &:is(:focus, :valid) {
+            @apply px-4 pt-[16px] pb-0;
+        }
+        &:is(:focus, :invalid) {
+            @apply px-4 pt-[16px] pb-0;
+        }
+
+        &:is(:focus, :valid) ~ label {
+            @apply text-accent text-xs;
+            transform: translateY(-120%);
+        }
+        &:is(:focus, :invalid) ~ label {
+            @apply text-error text-xs;
             transform: translateY(-120%);
         }
     }
