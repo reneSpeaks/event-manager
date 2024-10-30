@@ -23,12 +23,10 @@ const Hero = () => {
                 });
             }
         }
-
         // start the text animation
         StartTextAnimation(0);
 
-        return () => {
-        };
+        return () => {};
     }, []);
 
     return (

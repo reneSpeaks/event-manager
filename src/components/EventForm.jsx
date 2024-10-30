@@ -1,12 +1,16 @@
 import {FaXmark} from 'react-icons/fa6';
 import {useState} from 'react';
+import {toast} from 'react-toastify';
+import {getLocalStorage} from '../utils/storage.js';
 
 const EventForm = () => {
     const [{title, description, imgurl, date, location, latitude, longitude}, setFormState] = useState({
         title: '',
         description: '',
-        imgurl: '',
+        imgurl: 'https://via.assets.so/img.jpg?w=1280&h=900',
         date: '',
+
+        // TODO: NEED TO SET UP LOCATION SOMEHOW
         location: '',
         latitude: 8.404746955649602,
         longitude: 49.01438194665317
@@ -21,7 +25,38 @@ const EventForm = () => {
     }
 
     const handleSubmit = async e => {
-        e.preventDefault();
+        try {
+            e.preventDefault();
+            if (!title || !description || !date || !location) throw new Error('Please fill out all required fields!');
+
+            const token = getLocalStorage('SignedIn');
+            const event = {
+                title: title,
+                description: description,
+                imgurl: imgurl,
+                date: date,
+                location: location,
+                latitude: latitude,
+                longitude: longitude,
+            }
+            const options = {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    Authorization: `Bearer ${token}`,
+                },
+                body: JSON.stringify(event)
+            }
+
+            const result = await fetch('http://localhost:3001/api/events', options)
+            const data = await result.json();
+            if (data.error) throw new Error(data.error);
+
+            document.getElementById('event-form').close();
+            toast.success('Successfully added event!');
+        } catch (error) {
+            toast.error(error.message);
+        }
     }
 
     return (

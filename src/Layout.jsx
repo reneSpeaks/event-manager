@@ -3,10 +3,15 @@ import Footer from './components/Footer.jsx';
 import {Outlet} from 'react-router-dom';
 import {ToastContainer} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import {useState} from 'react';
+import {useEffect, useState} from 'react';
+import {getLocalStorage} from './utils/storage.js';
 
 const Layout = () => {
     const [signedIn, setSignedIn] = useState(false);
+
+    useEffect(() => {
+        if( getLocalStorage("SignedIn") !== []) setSignedIn(() => true);
+    }, [])
 
     return (
         <>
