@@ -1,4 +1,5 @@
 import {useState} from 'react';
+import {FaXmark} from "react-icons/fa6";
 
 const SignForm = () => {
     const [signMode, setSignMode] = useState('sign-in');
@@ -7,12 +8,14 @@ const SignForm = () => {
         <dialog id="sign-form" className="modal">
             <div className="modal-box p-8">
                 <form method="dialog">
-                    <button className="absolute right-3 top-2" onClick={() => setSignMode('sign-in')}>✕</button>
+                    <button className="absolute text-2xl right-2 top-2" onClick={() => setSignMode('sign-in')}>
+                        <FaXmark />
+                    </button>
                 </form>
                 <h3 className="font-bold text-2xl text-center mb-8">{signMode === 'sign-in' ? "SIGN IN" : "SIGN UP"}</h3>
                 <form>
                     <div className="input-field">
-                        <input id="form-email" type="text" autoComplete="email" required />
+                        <input id="form-email" type="email" autoComplete="email" required />
                         <label htmlFor="form-email">{signMode === 'sign-in' ? "Email" : "Enter your email"}</label>
                     </div>
                     <div className="input-field">
