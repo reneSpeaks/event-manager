@@ -40,8 +40,8 @@ const Navbar = ({signedIn, setSignedIn}) => {
                 <div className="drawer-side">
                     <label htmlFor="my-drawer" aria-label="close sidebar" className="drawer-overlay"></label>
                     <ul className="menu bg-base-200 text-base-content text-3xl font-bold min-h-full w-80 p-4">
-                        <li><NavLink to="/" className={({isActive}) => isActive ? "menu-item cursor-pointer text-accent" : "menu-item cursor-pointer"}>Home</NavLink></li>
-                        <li><NavLink to="/events" className={({isActive}) => isActive ? "menu-item cursor-pointer text-accent" : "menu-item cursor-pointer"}>Events</NavLink></li>
+                        <li><NavLink to="/" onClick={() => (document.querySelector('.drawer-toggle').checked = false)} className={({isActive}) => isActive ? "menu-item cursor-pointer text-accent" : "menu-item cursor-pointer"}>Home</NavLink></li>
+                        <li><NavLink to="/events" onClick={() => (document.querySelector('.drawer-toggle').checked = false)} className={({isActive}) => isActive ? "menu-item cursor-pointer text-accent" : "menu-item cursor-pointer"}>Events</NavLink></li>
                         {signedIn && (
                             <li><span className="menu-item cursor-pointer" onClick={() => document.getElementById('event-form').showModal()}>Add Event</span></li>
                         )}

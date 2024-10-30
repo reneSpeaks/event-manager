@@ -7,7 +7,7 @@ const EventForm = () => {
     const [{title, description, imgurl, date, location, latitude, longitude}, setFormState] = useState({
         title: '',
         description: '',
-        imgurl: 'https://via.assets.so/img.jpg?w=1280&h=900',
+        imgurl: '',
         date: '',
 
         // TODO: NEED TO SET UP LOCATION SOMEHOW
@@ -33,7 +33,7 @@ const EventForm = () => {
             const event = {
                 title: title,
                 description: description,
-                imgurl: imgurl,
+                imgurl: imgurl === "" ? "https://via.assets.so/img.jpg?w=1280&h=900" : imgurl,
                 date: date,
                 location: location,
                 latitude: latitude,
@@ -57,7 +57,7 @@ const EventForm = () => {
                 ...prev,
                 title: '',
                 description: '',
-                imgurl: 'https://via.assets.so/img.jpg?w=1280&h=900',
+                imgurl: '',
                 date: '',
                 location: '',
                 latitude: 8.404746955649602,
