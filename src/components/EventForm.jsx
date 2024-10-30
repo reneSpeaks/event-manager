@@ -18,6 +18,10 @@ const EventForm = () => {
         }));
     }
 
+    const handleSubmit = async e => {
+        e.preventDefault();
+    }
+
     return (
         <dialog id="event-form" className="modal">
             <div className="modal-box h-fit p-8">
@@ -27,7 +31,7 @@ const EventForm = () => {
                     </button>
                 </form>
                 <h3 className="font-bold text-lg text-center mb-8">ADD NEW EVENT</h3>
-                <form>
+                <form onSubmit={handleSubmit}>
                     <div className="input-field">
                         <input name="title" type="text" placeholder="Impressive event title" value={title} onChange={handleChange} required />
                         <label htmlFor="title">Title</label>
