@@ -1,6 +1,25 @@
 import {FaXmark} from 'react-icons/fa6';
+import {useState} from 'react';
 
 const EventForm = () => {
+    const [{title, location, date, image, description}, setFormState] = useState({
+        title: '',
+        location: '',
+        date: '',
+        image: '',
+        description: '',
+    });
+
+    const handleChange = e => {
+        const { name, value } = e.target;
+        setFormState(previousState => ({
+            ...previousState,
+            [name]: value
+        }));
+    }
+
+    console.log(title, location, date, image, description);
+
     return (
         <dialog id="event-form" className="modal">
             <div className="modal-box h-fit p-8">
@@ -12,24 +31,24 @@ const EventForm = () => {
                 <h3 className="font-bold text-lg text-center mb-8">ADD NEW EVENT</h3>
                 <form>
                     <div className="input-field">
-                        <input id="form-title" type="text" placeholder="Impressive event title" required />
-                        <label htmlFor="form-title">Title</label>
+                        <input name="title" type="text" placeholder="Impressive event title" value={title} onChange={handleChange} required />
+                        <label htmlFor="title">Title</label>
                     </div>
                     <div className="input-field">
-                        <input id="form-location" type="text" autoComplete="off" placeholder="Amazing event location" required />
-                        <label htmlFor="form-location">Location</label>
+                        <input name="location" type="text" autoComplete="off" placeholder="Amazing event location" value={location} onChange={handleChange} required />
+                        <label htmlFor="location">Location</label>
                     </div>
                     <div className="input-field">
-                        <input id="form-date" type="date" required />
-                        <label htmlFor="form-date"></label>
+                        <input name="date" type="date" value={date} onChange={handleChange} required />
+                        <label htmlFor="date"></label>
                     </div>
                     <div className="input-field">
-                        <input id="form-img" type="text" autoComplete="off" placeholder="https://via.assets.so/img.jpg?w=500&h=300" />
-                        <label htmlFor="form-img">Image</label>
+                        <input name="image" type="text" autoComplete="off" placeholder="https://via.assets.so/img.jpg?w=500&h=300" value={image} onChange={handleChange} />
+                        <label htmlFor="image">Image</label>
                     </div>
                     <div className="input-field">
-                        <textarea id="form-description" placeholder="Outstanding description" required />
-                        <label htmlFor="form-description">Description</label>
+                        <textarea name="description" placeholder="Outstanding description" value={description} onChange={handleChange} required />
+                        <label htmlFor="description">Description</label>
                     </div>
                     <div className="modal-action">
                         <button className="btn btn-primary w-full rounded-lg">Add Event</button>
