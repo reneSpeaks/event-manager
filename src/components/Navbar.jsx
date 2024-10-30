@@ -1,10 +1,12 @@
 import {FaBars} from "react-icons/fa6";
 import {Link, NavLink} from "react-router-dom";
 import {toast} from 'react-toastify';
+import {saveLocalStorage} from '../utils/storage.js';
 
 const Navbar = ({signedIn, setSignedIn}) => {
     const signOut = () => {
         setSignedIn(() => false);
+        saveLocalStorage('SignedIn', [])
         toast.success('Successfully signed out!');
     }
 
@@ -21,7 +23,7 @@ const Navbar = ({signedIn, setSignedIn}) => {
                         <li><NavLink to="/events" className={({isActive}) => isActive ? "menu-item cursor-pointer text-accent" : "menu-item cursor-pointer"}>Events</NavLink></li>
                         <li><span className="menu-item cursor-pointer" onClick={() => document.getElementById('event-form').showModal()}>Add Event</span></li>
                     </ul>
-                    {signedIn ? (
+                    {signedIn === false ? (
                         <button className="text-xl cursor-pointer font-bold hover:text-accent active:text-primary" onClick={() => document.getElementById('sign-form').showModal()}>
                             Log In
                         </button>
