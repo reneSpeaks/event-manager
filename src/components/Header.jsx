@@ -3,7 +3,7 @@ import Navbar from './Navbar.jsx';
 import SignForm from './SignForm.jsx';
 import EventForm from './EventForm.jsx';
 
-const Header = (signedIn, setSignedIn) => {
+const Header = ({signedIn, setSignedIn}) => {
     const [scrollY, setScrollY] = useState(0);
 
     function logScroll() {

@@ -3,7 +3,7 @@ import {FaXmark} from "react-icons/fa6";
 import {toast} from 'react-toastify';
 import {saveLocalStorage} from '../utils/storage.js';
 
-const SignForm = (setSignedIn) => {
+const SignForm = ({setSignedIn}) => {
     const [signMode, setSignMode] = useState('sign-in');
     const [{email, password, policy}, setFormState] = useState({
         email: '',
@@ -51,7 +51,7 @@ const SignForm = (setSignedIn) => {
 
                 console.log(data)
                 saveLocalStorage('SignedIn', data.token)
-                setSignedIn((prev) => !prev);
+                setSignedIn(() => true);
                 document.getElementById('sign-form').close();
                 toast.success('Successfully signed in!');
             }

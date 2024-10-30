@@ -2,7 +2,7 @@ import {FaBars} from "react-icons/fa6";
 import {Link, NavLink} from "react-router-dom";
 import {toast} from 'react-toastify';
 
-const Navbar = (signedIn, setSignedIn) => {
+const Navbar = ({signedIn, setSignedIn}) => {
     const signOut = () => {
         setSignedIn(() => false);
         toast.success('Successfully signed out!');
