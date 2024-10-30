@@ -20,7 +20,7 @@ const EventForm = () => {
                         <label htmlFor="form-location">Location</label>
                     </div>
                     <div className="input-field">
-                        <input id="form-date" type="date" value="" required />
+                        <input id="form-date" type="date" required />
                         <label htmlFor="form-date" className="hidden">Date</label>
                     </div>
                     <div className="input-field">
