@@ -21,7 +21,7 @@ const EventForm = () => {
                     </div>
                     <div className="input-field">
                         <input id="form-date" type="date" required />
-                        <label htmlFor="form-date" className="hidden">Date</label>
+                        <label htmlFor="form-date"></label>
                     </div>
                     <div className="input-field">
                         <input id="form-img" type="text" autoComplete="off" placeholder="https://via.assets.so/img.jpg?w=500&h=300" />
