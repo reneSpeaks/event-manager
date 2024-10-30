@@ -18,7 +18,7 @@ const Layout = () => {
             <Header signedIn={signedIn} setSignedIn={setSignedIn} />
             <div className="relative">
                 <main className="flex flex-col relative z-10 items-center mb-24 bg-base-100">
-                    <ToastContainer theme='colored' autoClose={1000} className="z-50" />
+                    <ToastContainer theme='colored' autoClose={1000} position='bottom-left' />
                     <Outlet />
                 </main>
                 <Footer />
