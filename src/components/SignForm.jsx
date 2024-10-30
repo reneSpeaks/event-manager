@@ -19,7 +19,38 @@ const SignForm = () => {
     }
 
     const handleSubmit = async e => {
-        e.preventDefault();
+        try {
+            e.preventDefault();
+            if (!email || !password) return alert('Please fill out all the fields!');
+
+            const user = {
+                "email": email,
+                "password": password
+            }
+            const options = {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({user})
+            }
+
+            if (signMode === 'sign-up') {
+                const result = await fetch('http://localhost:3001/api/users', options)
+                const data = await result.json();
+                console.log(data);
+            } else if (signMode === 'sign-in') {
+                const result = await fetch('http://localhost:3001/auth/login', options)
+                const data = await result.json();
+                console.log(data);
+            }
+
+        } catch (error) {
+            console.error(error.message)
+        } finally {
+
+        }
+
     }
 
     return (
