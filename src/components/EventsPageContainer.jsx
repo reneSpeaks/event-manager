@@ -30,4 +30,3 @@ const EventsPageContainer = () => {
 };
 
 export default EventsPageContainer;
-
