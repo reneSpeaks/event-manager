@@ -11,6 +11,7 @@ const App = () => {
                 <Route index element={<Hero />} />
                 <Route path="/events" element={<Events />} />
                 <Route path="/event/:id" element={<EventDetails />} />
+                <Route path="/events/:id" element={<EventDetails />} />
             </Route>
         )
     )
