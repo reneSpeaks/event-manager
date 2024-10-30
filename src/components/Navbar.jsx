@@ -21,7 +21,9 @@ const Navbar = ({signedIn, setSignedIn}) => {
                     <ul className="hidden sm:flex flex-row gap-20 font-bold">
                         <li><NavLink to="/" className={({isActive}) => isActive ? "menu-item cursor-pointer text-accent" : "menu-item cursor-pointer"}>Home</NavLink></li>
                         <li><NavLink to="/events" className={({isActive}) => isActive ? "menu-item cursor-pointer text-accent" : "menu-item cursor-pointer"}>Events</NavLink></li>
-                        <li><span className="menu-item cursor-pointer" onClick={() => document.getElementById('event-form').showModal()}>Add Event</span></li>
+                        {signedIn && (
+                            <li><span className="menu-item cursor-pointer" onClick={() => document.getElementById('event-form').showModal()}>Add Event</span></li>
+                        )}
                     </ul>
                     {signedIn === false ? (
                         <button className="text-xl cursor-pointer font-bold hover:text-accent active:text-primary" onClick={() => document.getElementById('sign-form').showModal()}>
