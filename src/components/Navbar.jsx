@@ -24,7 +24,7 @@ const Navbar = () => {
                     <label htmlFor="my-drawer" aria-label="close sidebar" className="drawer-overlay"></label>
                     <ul className="menu bg-base-200 text-base-content text-3xl font-bold min-h-full w-80 p-4">
                         <li><NavLink to="/" className={({isActive}) => isActive ? "menu-item cursor-pointer text-accent" : "menu-item cursor-pointer"}>Home</NavLink></li>
-                        <li><a className="menu-item cursor-pointer">Events</a></li>
+                        <li><NavLink to="/events" className={({isActive}) => isActive ? "menu-item cursor-pointer text-accent" : "menu-item cursor-pointer"}>Events</NavLink></li>
                     </ul>
                 </div>
             </div>
