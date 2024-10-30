@@ -18,8 +18,6 @@ const EventForm = () => {
         }));
     }
 
-    console.log(title, location, date, image, description);
-
     return (
         <dialog id="event-form" className="modal">
             <div className="modal-box h-fit p-8">
