@@ -1,5 +1,6 @@
 import {useState} from 'react';
 import {FaXmark} from "react-icons/fa6";
+import {toast} from 'react-toastify';
 
 const SignForm = () => {
     const [signMode, setSignMode] = useState('sign-in');
@@ -24,15 +25,15 @@ const SignForm = () => {
             if (!email || !password) return alert('Please fill out all the fields!');
 
             const user = {
-                "email": email,
-                "password": password
+                email: email,
+                password: password
             }
             const options = {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify({user})
+                body: JSON.stringify(user)
             }
 
             if (signMode === 'sign-up') {
@@ -40,13 +41,13 @@ const SignForm = () => {
                 const data = await result.json();
                 console.log(data);
             } else if (signMode === 'sign-in') {
-                const result = await fetch('http://localhost:3001/auth/login', options)
+                const result = await fetch('http://localhost:3001/api/auth/login', options)
                 const data = await result.json();
                 console.log(data);
             }
 
         } catch (error) {
-            console.error(error.message)
+            toast.error(error.message)
         } finally {
 
         }
