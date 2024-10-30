@@ -82,7 +82,7 @@
     }
 
     textarea {
-        @apply w-full h-52 outline-none px-4 text-[0.95rem] rounded-lg border-2 border-solid border-neutral focus:border-accent;
+        @apply w-full outline-none px-4 text-[0.95rem] rounded-lg border-2 border-solid border-neutral focus:border-accent;
 
         &:is(:focus, :valid) {
             @apply px-4 pt-[16px] pb-0;
