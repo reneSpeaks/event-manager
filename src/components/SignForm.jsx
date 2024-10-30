@@ -41,18 +41,27 @@ const SignForm = ({setSignedIn}) => {
                 const result = await fetch('http://localhost:3001/api/users', options)
                 const data = await result.json();
                 if (data.error) throw new Error(data.error);
-
                 document.getElementById('sign-form').close();
+                setFormState(prev => ({
+                    ...prev,
+                    email: '',
+                    password: '',
+                    policy: false,
+                }));
                 toast.success('Successfully signed up!');
             } else if (signMode === 'sign-in') {
                 const result = await fetch('http://localhost:3001/api/auth/login', options)
                 const data = await result.json();
                 if (data.error) throw new Error(data.error);
-
-                console.log(data)
                 saveLocalStorage('SignedIn', data.token)
                 setSignedIn(() => true);
                 document.getElementById('sign-form').close();
+                setFormState(prev => ({
+                    ...prev,
+                    email: '',
+                    password: '',
+                    policy: false,
+                }));
                 toast.success('Successfully signed in!');
             }
         } catch (error) {

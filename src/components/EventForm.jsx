@@ -53,6 +53,16 @@ const EventForm = () => {
             if (data.error) throw new Error(data.error);
 
             document.getElementById('event-form').close();
+            setFormState(prev => ({
+                ...prev,
+                title: '',
+                description: '',
+                imgurl: 'https://via.assets.so/img.jpg?w=1280&h=900',
+                date: '',
+                location: '',
+                latitude: 8.404746955649602,
+                longitude: 49.01438194665317
+            }));
             toast.success('Successfully added event!');
         } catch (error) {
             toast.error(error.message);
