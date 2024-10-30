@@ -1,22 +1,19 @@
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import {createBrowserRouter, createRoutesFromElements, Route, RouterProvider} from 'react-router-dom';
 import Hero from './pages/Hero.jsx';
-import Footer from './components/Footer.jsx';
-import Header from './components/Header';
 import EventDetails from './pages/EventDetails.jsx';
+import Layout from './Layout.jsx';
 
 const App = () => {
-    return (
-        <Router>
-            <Header />
-            <main>
-                <Routes>
-                    <Route path="/" element={<Hero />} /> 
-                    <Route path="/event/:id" element={<EventDetails />} /> 
-                </Routes>
-            </main>
-            <Footer />
-        </Router>
-    );
+    const router = createBrowserRouter(
+        createRoutesFromElements(
+            <Route path="/" element={<Layout />}>
+                <Route index element={<Hero />} />
+                <Route path="/event/:id" element={<EventDetails />} />
+            </Route>
+        )
+    )
+
+    return <RouterProvider router={router} />;
 };
 
 export default App;
