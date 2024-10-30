@@ -19,7 +19,7 @@ const EventsPageContainer = () => {
 
         return (
             <section className="p-4 flex flex-col max-w-[1280px] w-full bg-base-100 m-auto">
-                <h1 className="text-4xl font-bold text-accent text-center mb-10">Upcoming Moments</h1>
+                <h1 className="text-xl font-bold text-accent text-center mb-10">Moments</h1>
                 <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 w-full place-items-center">
                 {events && events.map((event, index) => {
                     return (<EventCard key={index} event={event} />);
