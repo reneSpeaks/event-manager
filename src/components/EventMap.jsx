@@ -1,10 +1,10 @@
-import { MapContainer, Marker, Popup, TileLayer } from 'react-leaflet';
-import L from 'leaflet';
+import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
+import L from "leaflet";
 
 const EventMap = ({ latitude, longitude, location }) => {
   // Define your marker icon
   const markerIcon = new L.Icon({
-    iconUrl: 'https://leafletjs.com/examples/custom-icons/leaf-green.png', 
+    iconUrl: "https://leafletjs.com/examples/custom-icons/leaf-green.png",
     iconSize: [25, 41], // Adjust as necessary
     iconAnchor: [12, 41],
     popupAnchor: [1, -34],
@@ -33,4 +33,3 @@ const EventMap = ({ latitude, longitude, location }) => {
 };
 
 export default EventMap;
-

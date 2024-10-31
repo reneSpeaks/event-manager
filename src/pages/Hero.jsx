@@ -33,8 +33,10 @@ const Hero = () => {
 
   useEffect(() => {
     if (sessionStorage.getItem("scrollToEvents") === "true") {
-      eventContainerRef.current?.scrollIntoView({ behavior: "smooth" });
-      sessionStorage.removeItem("scrollToEvents");
+      setTimeout(() => {
+        eventContainerRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+        sessionStorage.removeItem("scrollToEvents");
+      }, 100); 
     }
   }, []);
 
