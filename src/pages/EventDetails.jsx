@@ -11,7 +11,7 @@ const EventDetails = () => {
   const [event, setEvent] = useState(null);
   const [eventIds, setEventIds] = useState([]);
   const currentId = parseInt(id, 10);
-  const [referrer, setReferrer] = useState(location.state?.from || "/events"); // Default to /events if no referrer
+  const [referrer, setReferrer] = useState(location.state?.from || "/events"); 
 
   useEffect(() => {
     axios
@@ -78,7 +78,7 @@ const EventDetails = () => {
               <div className="flex justify-between gap-4">
                 <button
                   className="btn btn-accent hover:btn-primary"
-                  onClick={() => navigate("/events")}
+                  onClick={() => navigate("")}
                 >
                   Show Map
                 </button>
