@@ -10,11 +10,6 @@ const Hero = () => {
   useEffect(() => {
     const heroText = ["All Your Events.", "One Place.", "Live and Loud."];
 
-    if (sessionStorage.getItem("scrollToEvents") === "true") {
-      eventContainerRef.current?.scrollIntoView({ behavior: "smooth" });
-      sessionStorage.removeItem("scrollToEvents");
-    }
-
     function StartTextAnimation(i) {
       if (typeof heroText[i] == "undefined") {
         setTimeout(function () {
@@ -34,6 +29,13 @@ const Hero = () => {
     StartTextAnimation(0);
 
     return () => {};
+  }, []);
+
+  useEffect(() => {
+    if (sessionStorage.getItem("scrollToEvents") === "true") {
+      eventContainerRef.current?.scrollIntoView({ behavior: "smooth" });
+      sessionStorage.removeItem("scrollToEvents");
+    }
   }, []);
 
   return (
