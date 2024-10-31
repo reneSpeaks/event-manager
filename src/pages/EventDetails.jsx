@@ -1,19 +1,9 @@
 import { useParams, useNavigate, useLocation } from "react-router-dom";
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 import { FaCircleArrowRight } from "react-icons/fa6";
 import { FaCircleArrowLeft } from "react-icons/fa6";
-import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
-import { Icon } from "leaflet";
-import L from 'leaflet';
-
-const markerIcon = new L.Icon({
-  iconUrl: 'path_to_icon_image',
-  iconSize: [25, 41], // size of the icon
-  iconAnchor: [12, 41], // point of the icon which will correspond to marker's location
-  popupAnchor: [1, -34], // point from which the popup should open relative to the iconAnchor
-});
-
+import EventMap from "../components/EventMap";
 
 const EventDetails = () => {
   const { id } = useParams();
@@ -23,7 +13,6 @@ const EventDetails = () => {
   const [eventIds, setEventIds] = useState([]);
   const currentId = parseInt(id, 10);
   const [referrer, setReferrer] = useState(location.state?.from || "/events");
-  const mapRef = useRef(null);
   const [showMap, setShowMap] = useState(false);
 
   useEffect(() => {
@@ -49,23 +38,27 @@ const EventDetails = () => {
       });
   }, [currentId]);
 
-
   const currentIndex = eventIds.indexOf(currentId);
   const previousId = currentIndex > 0 ? eventIds[currentIndex - 1] : null;
   const nextId =
-  currentIndex < eventIds.length - 1 ? eventIds[currentIndex + 1] : null;
+    currentIndex < eventIds.length - 1 ? eventIds[currentIndex + 1] : null;
 
   const toggleMap = () => {
     setShowMap((prev) => !prev);
-  
+
     if (!showMap) {
       setTimeout(() => {
-        const mapElement = document.querySelector('.map-container');
+        const mapElement = document.querySelector(".map-container");
         if (mapElement) {
           mapElement.scrollIntoView({ behavior: "smooth", block: "start" });
         }
       }, 100);
     }
+  };
+
+  const handleNavigation = (eventId) => {
+    setShowMap(false);
+    navigate(`/events/${eventId}`);
   };
 
   return (
@@ -125,7 +118,7 @@ const EventDetails = () => {
               {previousId && (
                 <FaCircleArrowLeft
                   className="size-10"
-                  onClick={() => navigate(`/events/${previousId}`)}
+                  onClick={() => handleNavigation(previousId)}
                 >
                   Previous Event
                 </FaCircleArrowLeft>
@@ -135,7 +128,7 @@ const EventDetails = () => {
               {nextId && (
                 <FaCircleArrowRight
                   className="size-10"
-                  onClick={() => navigate(`/events/${nextId}`)}
+                  onClick={() => handleNavigation(nextId)}
                 >
                   Next Event
                 </FaCircleArrowRight>
@@ -145,25 +138,11 @@ const EventDetails = () => {
         </section>
       )}
       {showMap && event && (
-        <div
-          ref={mapRef}
-          className="map-container"
-          style={{ height: "400px", width: "100%" }}
-        >
-          <MapContainer
-            center={[event.latitude, event.longitude]}
-            zoom={13}
-            style={{ width: "100%", height: "100%" }}
-          >
-            <TileLayer
-              url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-              attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-            />
-            <Marker position={[event.latitude, event.longitude]} icon={markerIcon}>
-              <Popup>{event.location}</Popup>
-            </Marker>
-          </MapContainer>
-        </div>
+        <EventMap
+          latitude={event.latitude}
+          longitude={event.longitude}
+          location={event.location}
+        />
       )}
     </>
   );
