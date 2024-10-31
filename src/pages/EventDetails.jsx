@@ -1,21 +1,17 @@
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { FaChevronRight } from "react-icons/fa6";
-import { FaChevronLeft } from "react-icons/fa6";
 import { FaCircleArrowRight } from "react-icons/fa6";
 import { FaCircleArrowLeft } from "react-icons/fa6";
-
-
-
-
 
 const EventDetails = () => {
   const { id } = useParams();
   const navigate = useNavigate();
+  const location = useLocation();
   const [event, setEvent] = useState(null);
   const [eventIds, setEventIds] = useState([]);
   const currentId = parseInt(id, 10);
+  const [referrer, setReferrer] = useState(location.state?.from || "/events"); // Default to /events if no referrer
 
   useEffect(() => {
     axios
@@ -65,7 +61,10 @@ const EventDetails = () => {
         >
           <div className="hero-overlay bg-opacity-60"></div>
           <div className="hero-content text-neutral-content text-center flex-col md:flex-row gap-10 md:gap-28">
-            <div id="details-container" className="max-w-md p-6 bg-white bg-opacity-80 rounded-lg shadow-lg relative">
+            <div
+              id="details-container"
+              className="max-w-md p-6 bg-white bg-opacity-80 rounded-lg shadow-lg relative"
+            >
               <h1 className="text-6xl font-extrabold mb-4 text-accent">
                 {event.title}
               </h1>
@@ -77,15 +76,17 @@ const EventDetails = () => {
               </p>
               <p className="text-lg text-gray-600 mb-6">{event.description}</p>
               <div className="flex justify-between gap-4">
-              <button
-                  className="btn btn-accent hover:btn-primary"
-                  onClick={() => navigate("/events")}
-                >
-                 Show Map
-                </button>
                 <button
                   className="btn btn-accent hover:btn-primary"
                   onClick={() => navigate("/events")}
+                >
+                  Show Map
+                </button>
+                <button
+                  className="btn btn-accent hover:btn-primary"
+                  onClick={() => {
+                    navigate(referrer);
+                  }}
                 >
                   Back to Events
                 </button>
@@ -95,19 +96,18 @@ const EventDetails = () => {
           <div className="flex justify-evenly gap-4 w-full absolute  mb-9 mx-4">
             <div className="flex">
               {previousId && (
-                <FaCircleArrowLeft className="size-10" 
-
-                
+                <FaCircleArrowLeft
+                  className="size-10"
                   onClick={() => navigate(`/events/${previousId}`)}
                 >
                   Previous Event
-           
                 </FaCircleArrowLeft>
               )}
             </div>
             <div className="flex">
               {nextId && (
-              <FaCircleArrowRight className="size-10"
+                <FaCircleArrowRight
+                  className="size-10"
                   onClick={() => navigate(`/events/${nextId}`)}
                 >
                   Next Event

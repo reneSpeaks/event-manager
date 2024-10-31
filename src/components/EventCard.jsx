@@ -1,9 +1,10 @@
-import {useNavigate} from "react-router-dom";
+import {useNavigate, useLocation} from "react-router-dom";
 
 const EventCard = ({event}) => {
     const navigate = useNavigate();
+    const location = useLocation();
     const handleClick = () => {
-        navigate(`/event/${event.id}`);
+        navigate(`/event/${event.id}`, { state: { from: location } });
     };
 
     return (
