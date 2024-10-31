@@ -1,6 +1,14 @@
 import { useParams, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { FaChevronRight } from "react-icons/fa6";
+import { FaChevronLeft } from "react-icons/fa6";
+import { FaCircleArrowRight } from "react-icons/fa6";
+import { FaCircleArrowLeft } from "react-icons/fa6";
+
+
+
+
 
 const EventDetails = () => {
   const { id } = useParams();
@@ -57,7 +65,7 @@ const EventDetails = () => {
         >
           <div className="hero-overlay bg-opacity-60"></div>
           <div className="hero-content text-neutral-content text-center flex-col md:flex-row gap-10 md:gap-28">
-            <div className="max-w-md p-6 bg-white bg-opacity-80 rounded-lg shadow-lg">
+            <div id="details-container" className="max-w-md p-6 bg-white bg-opacity-80 rounded-lg shadow-lg relative">
               <h1 className="text-6xl font-extrabold mb-4 text-accent">
                 {event.title}
               </h1>
@@ -69,30 +77,42 @@ const EventDetails = () => {
               </p>
               <p className="text-lg text-gray-600 mb-6">{event.description}</p>
               <div className="flex justify-between gap-4">
-                {previousId && (
-                  <button
-                    className="btn btn-accent hover:btn-primary"
-                    onClick={() => navigate(`/events/${previousId}`)}
-                  >
-                    Previous Event
-                  </button>
-                )}
+              <button
+                  className="btn btn-accent hover:btn-primary"
+                  onClick={() => navigate("/events")}
+                >
+                 Show Map
+                </button>
                 <button
                   className="btn btn-accent hover:btn-primary"
                   onClick={() => navigate("/events")}
                 >
                   Back to Events
                 </button>
-
-                {nextId && (
-                  <button
-                    className="btn btn-accent hover:btn-primary"
-                    onClick={() => navigate(`/events/${nextId}`)}
-                  >
-                    Next Event
-                  </button>
-                )}
               </div>
+            </div>
+          </div>
+          <div className="flex justify-evenly gap-4 w-full absolute  mb-9 mx-4">
+            <div className="flex">
+              {previousId && (
+                <FaCircleArrowLeft className="size-10" 
+
+                
+                  onClick={() => navigate(`/events/${previousId}`)}
+                >
+                  Previous Event
+           
+                </FaCircleArrowLeft>
+              )}
+            </div>
+            <div className="flex">
+              {nextId && (
+              <FaCircleArrowRight className="size-10"
+                  onClick={() => navigate(`/events/${nextId}`)}
+                >
+                  Next Event
+                </FaCircleArrowRight>
+              )}
             </div>
           </div>
         </section>
