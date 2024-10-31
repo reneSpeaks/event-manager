@@ -36,7 +36,6 @@ const EventDetails = () => {
       });
   }, [currentId]);
 
-  // Calculate previous and next event IDs for navigation
   const currentIndex = eventIds.indexOf(currentId);
   const previousId = currentIndex > 0 ? eventIds[currentIndex - 1] : null;
   const nextId =
