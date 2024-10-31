@@ -11,7 +11,7 @@ const EventDetails = () => {
   const [event, setEvent] = useState(null);
   const [eventIds, setEventIds] = useState([]);
   const currentId = parseInt(id, 10);
-  const [referrer, setReferrer] = useState(location.state?.from || "/events"); 
+  const [referrer, setReferrer] = useState(location.state?.from || "/events");
 
   useEffect(() => {
     axios
@@ -85,6 +85,7 @@ const EventDetails = () => {
                 <button
                   className="btn btn-accent hover:btn-primary"
                   onClick={() => {
+                    sessionStorage.setItem("scrollToEvents", "true");
                     navigate(referrer);
                   }}
                 >
