@@ -17,7 +17,7 @@ const EventsPageContainer = () => {
 
   return (
     <section className="p-4 flex flex-col max-w-[1280px] w-full bg-base-100 m-auto">
-      <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold text-accent text-center mb-10">
+      <h1 className="text-3xl md:text-3xl lg:text-4xl font-bold text-accent text-left-md md:text-center mb-4">
         Moments
       </h1>
       <div className="flex flex-wrap justify-center gap-4 w-full">
